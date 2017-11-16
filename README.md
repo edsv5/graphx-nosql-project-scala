@@ -1,5 +1,3 @@
-# Proyecto de Spark GraphX para el curso de Bases de Datos II - 2do Semestre 2017
-
 # Quick start
 ### Start Spark Shell
 ```
