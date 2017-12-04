@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Sat Nov 25 21:46:39 CST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015f-f66f-208a-000012405a20 
-on database directory /home/daniel/graphx-nosql-project-scala/Fuerza Laboral/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@7d284f15 
-Loaded from file:/home/daniel/Downloads/spark-2.2.0-bin-hadoop2.7/jars/derby-10.12.1.1.jar
+Sun Dec 03 17:42:14 CST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0160-1ec2-3e5a-000017520610 
+on database directory /Users/eduardo/UCR/2017/2do Semestre/Bases de Datos II/Proyecto/Implementación/repo/graphx-nosql-project-scala/Fuerza Laboral/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@1657b017 
+Loaded from file:/usr/local/Cellar/apache-spark/2.2.0/libexec/jars/derby-10.12.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_151-b12
-user.dir=/home/daniel/graphx-nosql-project-scala/Fuerza Laboral
-os.name=Linux
-os.arch=amd64
-os.version=4.10.0-40-generic
+java.runtime.version=1.8.0_152-b16
+user.dir=/Users/eduardo/UCR/2017/2do Semestre/Bases de Datos II/Proyecto/Implementación/repo/graphx-nosql-project-scala/Fuerza Laboral
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.12.6
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

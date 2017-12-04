@@ -60,7 +60,8 @@ var vertices = Array(
                         ("PobFueraFuerzaTrabajoTotal", 0D),
                         ("PobFueraFuerzaTrabajoPensionadoJubilado", 0D),
                         ("PobFueraFuerzaTrabajoViveRenta", 0D),
-                        ("PobFueraFuerzaTrabajoEstudiante", 0D)
+                        ("PobFueraFuerzaTrabajoEstudiante", 0D),
+                        ("PorcentajeOcupacion", 0D) // Atributo extra para guardar el porcentaje de ocupacion
                     )
                 )
 			)
@@ -104,6 +105,7 @@ for (line <- bufferedSource.getLines) {
     var pobFueraFuerzaTrabajoPensionadoJubilado = s"${cols(15)}".toDouble
     var pobFueraFuerzaTrabajoViveRenta = s"${cols(16)}".toDouble
     var pobFueraFuerzaTrabajoEstudiante = s"${cols(17)}".toDouble
+    var porcentajeOcupacion = pobFuerzaTrabajoOcupada / pobFuerzaTrabajoTotal
 
     // Se crea la tupla
     var tupla = (id,    
@@ -120,14 +122,11 @@ for (line <- bufferedSource.getLines) {
                         ("POB_FUERA_FUERZA_TRABAJO_TOTAL", pobFueraFuerzaTrabajoTotal),
                         ("POB_FUERA_FUERZA_TRABAJO_PENSIONADO_JUBILADO", pobFueraFuerzaTrabajoPensionadoJubilado),
                         ("POB_FUERA_FUERZA_TRABAJO_VIVE_RENTA", pobFueraFuerzaTrabajoViveRenta),
-                        ("POB_FUERA_FUERZA_TRABAJO_ESTUDIANTE", pobFueraFuerzaTrabajoEstudiante)
+                        ("POB_FUERA_FUERZA_TRABAJO_ESTUDIANTE", pobFueraFuerzaTrabajoEstudiante),
+                        ("PORCENTAJE_OCUPACION", porcentajeOcupacion)
                     )
                     
                 )
-
-    // Tupla alternativa
-    //var tupla = (id, (("NOM_DIST", nom_dist), ("COD_DIST", cod_dist), ("NOM_CANT", nom_cant), ("COD_CANT", cod_cant), ("NOM_PROV", nom_prov), ("COD_PROV", cod_prov)) )
-    
     //println(tupla)
     
     // Se agrega al arreglo de nodos
@@ -151,6 +150,25 @@ graph.vertices.collect.foreach(println)
 // Consulta 1: ¿Cuántos distritos hay mapeados?
 println("Cantidad de distritos (cantidad de nodos)")
 val numDistritos = graph.numVertices
+
+// Consulta 2: Ordenar e imprimir las rutas más largas (valor más largo de arista (ojo, esto nos sirve un montón))
+
+//graph.inDegrees.join(airportVertices).sortBy(_._2._1, ascending=false).take(1)
+
+val ranks = graph.pageRank(0.0001).vertices
+
+val ranksNodos = ranks.sortBy(_._2._1, ascending=false).map(_._2._2)
+ranksNodos.take(10)
+
+// graph.vertices.sortBy(_.attr, ascending=false).map(case (_.attr, tupla) => id == 223)
+//collect.foreach(println)
+
+// graph.triplets.sortBy(_.attr, ascending=false).map(triplet =>
+//    	"Distance " + triplet.attr.toString + // attr: Atributo de la arista, es decir, distancia
+//		" from " + triplet.srcAttr + // srcAttr: atributo del nodo origen, en este caso, ID
+//		" to " + triplet.dstAttr + "." // dstAttr: atributo del nodo destino, en este caso ID 
+//	).collect. 
+//foreach(println) // Esto para imprimir
 
 //println("Búsquedas por id")
 // Consulta 2: Buscar el nodo con id = 287
