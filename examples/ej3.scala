@@ -17,11 +17,14 @@ import org.apache.spark.graphx._
 /************************** CREACIÓN DE LOS NODOS **************************/
 
 val vertices = Array(
-				(1L, ("SFO")),
-				(2L, ("ORD")),
-				(3L,("DFW"))
+				(1L, ("SFO", 3, 0)),
+				(2L, ("ORD", 5, 2)),
+				(3L, ("DFW", 3, 1))
 			)
-val vRDD= sc.parallelize(vertices) // Se crea el RDD de los vertices
+
+val vRDD : RDD[(Long, (String, Int, Int))] = sc.parallelize(vertices) // Se crea el RDD de los vertices
+
+
 
 // take(num) tries to take num elements from starting from RDD's 0th 
 // partition (if you consider 0 based indexes). So the behavior of 
@@ -33,7 +36,7 @@ vRDD.take(1)
 // res1: Array[(Long, String)] = Array((1,SFO))
 
 // Nodo default
-val nowhere = "nowhere"
+val nowhere = ("nowhere", 0, 0)
 
 /************************** CREACIÓN DE LAS ARISTAS **************************/
 
@@ -44,12 +47,16 @@ val nowhere = "nowhere"
 //    Edge Property distance → distance (Long)
 
 val edges = Array(
-				Edge(1L,2L,1800), 
+				Edge(1L,2L,1800),
+				Edge(1L,2L,200),
+				Edge(1L,2L,200),
+				Edge(1L,2L,200),
+				Edge(1L,2L,200),
 				Edge(2L,3L,800), 
 				Edge(3L,1L,1400)
 			)
 
-val eRDD= sc.parallelize(edges)  
+val eRDD : RDD[Edge[Int]] = sc.parallelize(edges)  
 
 // Se toma del RDD de aristas las primeras 2 aristas
 eRDD.take(2)
@@ -60,7 +67,7 @@ eRDD.take(2)
 
 // Para esto, se necesita un VertexRDD (vRDD), EdgeRDD (eRDD) y un nodo default (nuestro nodo "nowhere)
 
-val graph = Graph(vRDD,eRDD, nowhere)
+val graph : Graph[(String, Int, Int), Int] = Graph(vRDD,eRDD, nowhere)
 
 // Imprime los nodos
 graph.vertices.collect.foreach(println) // El .foreach(println) es para que los imprima bien
@@ -121,5 +128,21 @@ graph.triplets.sortBy(_.attr, ascending=false).map(triplet =>
 // Distance 1400 from DFW to SFO.
 // Distance 800 from ORD to DFW.
 
+val newEdges = sc.parallelize(graph.edges.groupBy(e => (e.srcId, e.dstId)).map{case (vertex,edges) => Edge(vertex._1, vertex._2, edges.map(_.attr).sum)}.collect)
+eRDD.take(3)
+newEdges.take(3)
+val newGraph = Graph(vRDD,newEdges,nowhere);
+newGraph.triplets.take(3).foreach(println)
 
+//val temp = graph.aggregateMessages[int](triplet => {triplet.sendToDst(triplet.attr)},_ + _, TripletFields.EdgeOnly).toDF("id","value")
+
+val vertices2 = Array(
+				(1L, ("SFO", 0, 1, 5)),
+				(2L, ("ORD", 2, 1, 5)),
+				(3L, ("DFW", 0, 0, 5))
+			)
+val vRDD2 : RDD[(Long, (String, Int, Int, Int))] = sc.parallelize(vertices2)
+//var newVert : RDD[(Long, (String, Int, Int, Int, String, Int, Int, Int, Int))] = vRDD.join(vRDD2)
+var newVert = sc.parallelize(vRDD.join(vRDD2).map{e => (e._1, (e._2._1._1,e._2._1._2,e._2._1._3,e._2._2._1,e._2._2._2,e._2._2._3,e._2._2._4))}.collect)
+newVert.take(3)
 
