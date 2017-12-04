@@ -11,6 +11,7 @@ import org.apache.spark.graphx._
 var bufferedSource = scala.io.Source.fromFile("Carreteras_de_Costa_Rica_noExtraComas_noEmptyRegs_SrcDstAdded.csv")
 
 
+
 // Creación del array inicial de nodos
 
 var vertices = Array(
@@ -104,10 +105,11 @@ println("Total de nodos: " + numDistritos)
 println("--------------------------- Prueba de group, impresion de nodos agregado ----------------------------")
 //var grouped = eRDD.map{ case (idA, idB, shape_length) => ((idA,idB),(shape_length))}.reduceByKey((x,y) => (x._3+y._3))
 //grouped.collect.foreach(println)
-val edgesGrouped = sc.parallelize(graph.edges.groupBy(e => (e.srcId, e.dstId)).map{case (vertex, edges) => Edge(vertex._1, vertex._2, edges.map(_.attr).sum)}.collect)
-val graphGrouped = Graph(vRDD, edgesGrouped, nowhere)
-graphGrouped.foreach(println)
-graphGrouped.persist()
+val graphGrouped = graph.edges.groupBy(e => (e.srcId, e.dstId)).map{case (vertex, edges) => (vertex, edges.map(_.attr).sum)}
+graphGrouped.collect.foreach(println)
+var numCarreteras = graphGrouped.numEdges
+println("Total de carreteras: "+ numCarreteras)
+//graphGrouped.persist()
 
 
 println("-------------------------- IMPRESIÓN DE ARISTAS ----------------------------")
