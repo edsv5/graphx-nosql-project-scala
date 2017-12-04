@@ -94,11 +94,16 @@ println("--------------------------- CREACIÓN DE GRAFO ------------------------
 
 var graph = Graph(vRDD, eRDD)
 // Impresión de los nodos
+
 println("-------------------------- IMPRESIÓN DE NODOS ----------------------------")
 graph.vertices.collect.foreach(println)
 // Cuantos nodos?
 var numDistritos = graph.numVertices 
 println("Total de nodos: " + numDistritos)
+
+println("--------------------------- Prueba de group, impresion de nodos agregado ----------------------------")
+val group = graph.groupEdges((a,b) => a+b)
+group.edges.collect.foreach(println)
 
 println("-------------------------- IMPRESIÓN DE ARISTAS ----------------------------")
 // Imprime las aristas
