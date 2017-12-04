@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Sun Dec 03 21:03:00 CST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0160-1f7a-0b6f-0000173d3ab8 
-on database directory /Users/eduardo/UCR/2017/2do Semestre/Bases de Datos II/Proyecto/Implementación/repo/graphx-nosql-project-scala/Carreteras/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@1ccdc7aa 
-Loaded from file:/usr/local/Cellar/apache-spark/2.2.0/libexec/jars/derby-10.12.1.1.jar
+Sun Dec 03 22:02:39 CST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0160-1fb0-a1fc-00000ca759c0 
+on database directory /Users/alexiaborchgrevink/Desktop/BasesII/EntregaFinalGraphX/graphx-nosql-project-scala/Carreteras/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@71f0806b 
+Loaded from file:/Users/alexiaborchgrevink/Desktop/BasesII/Scala-GraphX/graphx-nosql-project-scala/spark/jars/derby-10.12.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_152-b16
-user.dir=/Users/eduardo/UCR/2017/2do Semestre/Bases de Datos II/Proyecto/Implementación/repo/graphx-nosql-project-scala/Carreteras
+java.runtime.version=1.8.0_131-b11
+user.dir=/Users/alexiaborchgrevink/Desktop/BasesII/EntregaFinalGraphX/graphx-nosql-project-scala/Carreteras
 os.name=Mac OS X
 os.arch=x86_64
 os.version=10.12.6

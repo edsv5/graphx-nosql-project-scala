@@ -102,12 +102,15 @@ var numDistritos = graph.numVertices
 println("Total de nodos: " + numDistritos)
 
 println("--------------------------- Prueba de group, impresion de nodos agregado ----------------------------")
-val group = graph.groupEdges((a,b) => a+b)
-group.edges.collect.foreach(println)
+//var grouped = eRDD.map{ case (idA, idB, shape_length) => ((idA,idB),(shape_length))}.reduceByKey((x,y) => (x._3+y._3))
+//grouped.collect.foreach(println)
+val graphGrouped = graph.edges.groupBy(e => (e.srcId, e.dstId)).map{case (vertex, edges) => (vertex, edges.map(_.attr).sum)}.collect
+graphGrouped.foreach(println)
+
 
 println("-------------------------- IMPRESIÓN DE ARISTAS ----------------------------")
 // Imprime las aristas
-graph.edges.collect.foreach(println) 
+//graph.edges.collect.foreach(println) 
 
 // graph.vertices.filter {case (id, tupla) => id == 3L }.collect.foreach(println)
 
