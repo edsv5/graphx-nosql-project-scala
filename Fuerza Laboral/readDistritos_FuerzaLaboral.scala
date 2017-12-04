@@ -143,7 +143,7 @@ println("--------------------------- CREACIÓN DE GRAFO ------------------------
 val graph = Graph(vRDD, eRDD)
 // Impresión de los nodos
 println("-------------------------- IMPRESIÓN DE NODOS ----------------------------")
-graph.vertices.collect.foreach(println)
+graph.vertices.sortBy(_._2._14, ascending=false).collect.foreach(println)
 
 //println("------------------------------ CONSULTAS ---------------------------------")
 
@@ -157,8 +157,8 @@ val numDistritos = graph.numVertices
 
 val ranks = graph.pageRank(0.0001).vertices
 
-val ranksNodos = ranks.sortBy(_._2._1, ascending=false).map(_._2._2)
-ranksNodos.take(10)
+//val ranksNodos = ranks.sortBy(_._2._1, ascending=false).map(_._2._2)
+//ranksNodos.take(10)
 
 // graph.vertices.sortBy(_.attr, ascending=false).map(case (_.attr, tupla) => id == 223)
 //collect.foreach(println)
