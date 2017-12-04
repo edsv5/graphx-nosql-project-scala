@@ -104,7 +104,8 @@ println("Total de nodos: " + numDistritos)
 println("--------------------------- Prueba de group, impresion de nodos agregado ----------------------------")
 //var grouped = eRDD.map{ case (idA, idB, shape_length) => ((idA,idB),(shape_length))}.reduceByKey((x,y) => (x._3+y._3))
 //grouped.collect.foreach(println)
-val graphGrouped = graph.edges.groupBy(e => (e.srcId, e.dstId)).map{case (vertex, edges) => (vertex, edges.map(_.attr).sum)}.collect
+val edgesGrouped = sc.parallelize(graph.edges.groupBy(e => (e.srcId, e.dstId)).map{case (vertex, edges) => Edge(vertex._1, vertex._2, edges.map(_.attr).sum)}.collect)
+val graphGrouped = Graph(vRDD, edgesGrouped, nowhere)
 graphGrouped.foreach(println)
 graphGrouped.persist()
 
