@@ -188,6 +188,8 @@ for (line <- archivoEducacion.getLines) {
     var cols = line.split(",").map(_.trim)
 
     var id = s"${cols(3)}".toLong
+    var provincia = s"${cols(4)}"
+    var canton = s"${cols(5)}"
     var distrito = s"${cols(6)}"
     var prcPobMen5EnGuarderia = s"${cols(7)}".toDouble
     var prcPobMay65EnCentroDiurno = s"${cols(8)}".toDouble
@@ -206,6 +208,9 @@ for (line <- archivoEducacion.getLines) {
     // Se crea la tupla
     var tupla = (id,    
                     (
+                        ("PROVINCIA", ""),
+                        ("CANTON", ""),
+                        ("DISTRITO", ""),
                         ("PRC_POB_MENOR_5_EN_GUARDERIA", prcPobMen5EnGuarderia),
                         ("PRC_MAYOR_65_EN_CENTRO_DIURNO", prcPobMay65EnCentroDiurno),
                         ("PRC_POB_ANALFABETA", prcPobAnalfabeta),
@@ -225,10 +230,21 @@ for (line <- archivoEducacion.getLines) {
 
     // Se agrega al arreglo de nodos
     arrayEducacion = arrayEducacion :+ tupla
-    val findTuple = verticesTotal.filter(x => x._1 == id)
-    println(s"elemento en array educacion= ${arrayEducacion(${id})}")
-    println(s"elemento en array vertices total= ${verticesTotal(${id})}")
+    //val findTuple = verticesTotal.filter(x => x._1 == id)
+    //println(s"elemento en array educacion= ${arrayEducacion(${id})}")
+    //println(s"elemento en array vertices total= ${verticesTotal(${id})}")
 }
+
+//Creacion de RDD
+val fuerzaRDD : RDD[(Long, (String, String, String, Double,Double,Double,Double,Double,Double,
+Double,Double,Double,Double))] = sc.parallelize(arrayFuerza)
+
+val educacionRDD : RDD[(Long, (String, String, String, Double,Double,Double,Double,Double,Double,
+Double,Double,Double,Double,Double,Double,Double))] = sc.parallelize(arrayEducacion)
+
+var newVert = sc.parallelize(fuerzaRDD.join(educacionRDD).map{e => (e._1, (e._2._1._1,e._2._1._2,e._2._1._3,e._2._2._1,e._2._2._2,e._2._2._3,e._2._2._4))}.collect)
+
+
 
 
 
