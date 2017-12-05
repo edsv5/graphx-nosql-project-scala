@@ -239,7 +239,17 @@ val fuerzaRDD : RDD[(Long, ((String,String),(String,String),(String,String),(Str
 
 val educacionRDD : RDD[(Long, ((String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double)))] = sc.parallelize(arrayEducacion)
 
-var newVert = sc.parallelize(fuerzaRDD.join(educacionRDD).map{e => (e._1, (e._2._1._1,e._2._1._2,e._2._1._3,e._2._2._1,e._2._2._2,e._2._2._3,e._2._2._4))}.collect)
+var newVert = sc.parallelize(fuerzaRDD.join(educacionRDD).map{distrito => (
+		distrito._1,
+		(
+		 distrito._2._1._1,
+		 distrito._2._1._2,
+		 distrito._2._1._3,
+		 distrito._2._2._1,
+		 distrito._2._2._2,
+		 distrito._2._2._3,
+		 distrito._2._2._4)
+		)}.collect)
 
 newVert.foreach(println)
 
