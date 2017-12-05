@@ -370,14 +370,17 @@ var graph = Graph(rddFuerzaEduHogaresDemo, eRDD)
 
 println("-------------------------- IMPRESIÓN DE NODOS ----------------------------")
 graph.vertices.saveAsTextFile("nodosCarreteras")
-graph.vertices.collect.foreach(println)
+//graph.vertices.collect.foreach(println)
 
 println("-------------------------- IMPRESIÓN DE ARISTAS ----------------------------")
 graph.edges.saveAsTextFile("aristasCarreteras")
-graph.edges.collect.foreach(println)
+//graph.edges.collect.foreach(println)
 
 archivoFuerzaLaboral.close
 archivoHogares.close
 archivoEducacion.close
 archivoDemografico.close
 archivoCarreteras.close
+
+graph.degrees.collect.foreach(println)
+graph.degrees.collect.sortBy(e=>e._2)
