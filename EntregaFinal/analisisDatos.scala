@@ -383,4 +383,9 @@ archivoDemografico.close
 archivoCarreteras.close
 
 graph.degrees.collect.foreach(println)
-graph.degrees.collect.sortBy(e=>e._2)
+var nodosMenores = graph.degrees.sortBy(e=>e._2).take(5)
+nodosMenores.foreach(println)
+
+var nodosMayores = graph.degrees.sortBy(_._2,false).take(5)
+nodosMayores.foreach(println)
+

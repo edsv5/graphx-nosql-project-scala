@@ -1,8 +1,15 @@
 ----------------------------------------------------------------
+<<<<<<< HEAD
 Tue Dec 05 02:20:56 CST 2017:
 Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0160-25c3-79e5-00000cc0c580 
 on database directory /home/daniel/spark/GraphX/EntregaFinal/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@59b447a4 
 Loaded from file:/usr/local/spark/jars/derby-10.12.1.1.jar
+=======
+Tue Dec 05 02:17:33 CST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0160-25c0-60a5-000010a9ed20 
+on database directory /home/daniel/graphx-nosql-project-scala/EntregaFinal/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@cec590c 
+Loaded from file:/home/daniel/Downloads/spark-2.2.0-bin-hadoop2.7/jars/derby-10.12.1.1.jar
+>>>>>>> bab57536f870729e39164c4bd9ab63b296e1938e
 java.vendor=Oracle Corporation
 java.runtime.version=1.8.0_151-8u151-b12-0ubuntu0.16.04.2-b12
 user.dir=/home/daniel/spark/GraphX/EntregaFinal
