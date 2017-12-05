@@ -60,6 +60,8 @@ var general = Array(
                 )
             )
 
+var distritos = Array((0L,""))
+
 var arrayFuerza = Array(
 				(0L, (
 			("PROVINCIA", ""),
@@ -105,6 +107,10 @@ var arrayHogares = Array(
                 )
             )
 
+var edges = Array(
+				Edge(0L,0L,0D)
+			)
+
 
 //*************** Lee archivo de Estadisticas de FUERZA LABORAL *******************//
 
@@ -137,9 +143,11 @@ for (line <- archivoFuerzaLaboral.getLines) {
                         ("POB_FUERA_FUERZA_TRABAJO_ESTUDIANTE", pobFueraFuerzaTrabajoEstudiante),
                         ("PORCENTAJE_OCUPACION", porcentajeOcupacion)
         ))
+    var tpl = (id,distrito)
     // Se agrega al arreglo de nodos
     arrayFuerza = arrayFuerza :+ tupla
-    //verticesTotal = verticesTotal:+ arrayFuerza
+    distritos = distritos :+ tpl
+    
 }
 
 
@@ -328,3 +336,48 @@ var rddFuerzaEduHogaresDemo = sc.parallelize(rddFuerzaEduHogares.join(demografic
 
 rddFuerzaEduHogaresDemo.foreach(println)
 
+for (line <- archivoCarreteras.getLines) {
+
+    var cols = line.split(",").map(_.trim)
+
+    var nsrc = s"${cols(4)}" 
+    var ndst = s"${cols(5)}"
+    var shape_length = s"${cols(6)}".toDouble
+    var dist1 : Long = 0
+    var dist2 : Long = 0
+
+    var dataFiltered = distritos.find(x => x._2 == nsrc) match {
+        case Some((x,y)) => dist1 = x
+	case None => dist1 = 0
+    }
+
+    var dataFiltered2 = distritos.find(x => x._2 == ndst) match {
+        case Some((x,y)) => dist2 = x
+	case None => dist2 = 0
+    }
+
+    // arista
+    if((dist1 != 0) || (dist2 != 0)){
+	var arista = Edge(dist1.toLong,dist2.toLong,shape_length)
+	edges = edges :+ arista
+    }
+}
+
+var eRDD = sc.parallelize(edges)
+
+println("--------------------------- CREACIÓN DE GRAFO ----------------------------")
+var graph = Graph(rddFuerzaEduHogaresDemo, eRDD)
+
+println("-------------------------- IMPRESIÓN DE NODOS ----------------------------")
+graph.vertices.saveAsTextFile("nodosCarreteras")
+graph.vertices.collect.foreach(println)
+
+println("-------------------------- IMPRESIÓN DE ARISTAS ----------------------------")
+graph.edges.saveAsTextFile("aristasCarreteras")
+graph.edges.collect.foreach(println)
+
+archivoFuerzaLaboral.close
+archivoHogares.close
+archivoEducacion.close
+archivoDemografico.close
+archivoCarreteras.close
