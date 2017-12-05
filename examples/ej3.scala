@@ -146,3 +146,8 @@ val vRDD2 : RDD[(Long, (String, Int, Int, Int))] = sc.parallelize(vertices2)
 var newVert = sc.parallelize(vRDD.join(vRDD2).map{e => (e._1, (e._2._1._1,e._2._1._2,e._2._1._3,e._2._2._1,e._2._2._2,e._2._2._3,e._2._2._4))}.collect)
 newVert.take(3)
 
+val graph2 = Graph(newVert, eRDD)
+
+val top2 = graph2.vertices.take(2)
+
+for ((id, propiedades) <- top2) { println(s"Aeropuerto con id $id se llama ${propiedades._1}") }
