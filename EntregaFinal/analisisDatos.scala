@@ -235,7 +235,7 @@ for (line <- archivoEducacion.getLines) {
 }
 
 //Creacion de RDD
-val fuerzaRDD : RDD[(Long, ((String,Double), (String,Double), (String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double)))] = sc.parallelize(arrayFuerza)
+val fuerzaRDD : RDD[(Long, ((String,String),(String,String),(String,String),(String,Double), (String,Double), (String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double)))] = sc.parallelize(arrayFuerza)
 
 val educacionRDD : RDD[(Long, ((String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double)))] = sc.parallelize(arrayEducacion)
 
