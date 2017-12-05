@@ -18,7 +18,7 @@ val archivoDemografico = scala.io.Source.fromFile("Distritos_Sociales_y_Demograf
 var archivoCarreteras = scala.io.Source.fromFile("Carreteras_de_Costa_Rica_noExtraComas_noEmptyRegs_SrcDstAdded.csv")
 
 
-var verticesTotal = Array(
+/*var verticesTotal = Array(
 			(0L,
 			(
 		                ("PROVINCIA", ""),
@@ -41,7 +41,7 @@ var verticesTotal = Array(
 		                ("PrcPobQueAsisteACentroPublicoEducReg", 0D),
 		                ("PrcPobQueAsisteACentroPrivadoEducReg", 0D),
 		                ("PrcPobde5a15EnEducGenBasica", 0D)
-		                /*("PrcPobEnEducAbierta", 0D),
+		                ("PrcPobEnEducAbierta", 0D),
 		                ("PrcPobConAlMenos1AnioDeSec", 0D),
 		                ("PrcPobDe17oMasConEducSuperior", 0D),
 		                ("PrcPobDe17oMasConTituloUniv", 0D),
@@ -63,10 +63,10 @@ var verticesTotal = Array(
 		                ("PorcentajePropias", 0D),
 		                ("PorcentajeAlquiladas", 0D),
 		                ("PorcentajeBuenEstado", 0D),
-		                ("PorcentajeHacinadas", 0D)*/
+		                ("PorcentajeHacinadas", 0D)
 			)
 	                )
-			)
+			)*/
 
 var general = Array(
             (0L,(
@@ -79,6 +79,9 @@ var general = Array(
 
 var arrayFuerza = Array(
 				(0L, (
+			("PROVINCIA", ""),
+			("CANTON", ""),
+			("DISTRITO", ""),
                         ("PobFuerzaTrabajoTotal", 0D),
                         ("PobFuerzaTrabajoOcupada", 0D),
                         ("DesempTotal", 0D),
@@ -162,6 +165,9 @@ for (line <- archivoFuerzaLaboral.getLines) {
     // Se crea la tupla
     var tupla = (id,    
                     (
+                        ("PROVINCIA", provincia),
+                        ("CANTON", canton),
+                        ("DISTRITO", distrito),
                         ("POB_FUERZA_TRABAJO_TOTAL", pobFuerzaTrabajoTotal),
                         ("POB_FUERZA_TRABAJO_OCUPADA", pobFuerzaTrabajoOcupada),
                         ("DESEMP_TOTAL", desempTotal),
@@ -227,8 +233,6 @@ for (line <- archivoEducacion.getLines) {
     //println(s"elemento en array educacion= ${arrayEducacion(${id})}")
     //println(s"elemento en array vertices total= ${verticesTotal(${id})}")
 }
-
-//arrayFuerza.foreach(println)
 
 //Creacion de RDD
 val fuerzaRDD : RDD[(Long, ((String,Double), (String,Double), (String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double)))] = sc.parallelize(arrayFuerza)
