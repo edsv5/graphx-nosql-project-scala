@@ -97,7 +97,7 @@ var graph = Graph(vRDD, eRDD)
 // Impresión de los nodos
 
 println("-------------------------- IMPRESIÓN DE NODOS ----------------------------")
-graph.vertices.collect.foreach(println)
+//graph.vertices.collect.foreach(println)
 // Cuantos nodos?
 var numDistritos = graph.numVertices 
 println("Total de nodos: " + numDistritos)
@@ -105,11 +105,13 @@ println("Total de nodos: " + numDistritos)
 println("--------------------------- Prueba de group, impresion de nodos agregado ----------------------------")
 //var grouped = eRDD.map{ case (idA, idB, shape_length) => ((idA,idB),(shape_length))}.reduceByKey((x,y) => (x._3+y._3))
 //grouped.collect.foreach(println)
-val graphGrouped = graph.edges.groupBy(e => (e.srcId, e.dstId)).map{case (vertex, edges) => (vertex, edges.map(_.attr).sum)}
-graphGrouped.collect.foreach(println)
+val edgesGrouped = sc.parallelize(graph.edges.groupBy(e => (e.srcId, e.dstId)).map{case (vertex, edges) => Edge(vertex._1, vertex._2, edges.map(_.attr).sum)}.collect)
+//edgesGrouped.foreach(println)
+val graphGrouped = Graph(vRDD, edgesGrouped)
+
 var numCarreteras = graphGrouped.numEdges
 println("Total de carreteras: "+ numCarreteras)
-//graphGrouped.persist()
+graphGrouped.persist()
 
 
 println("-------------------------- IMPRESIÓN DE ARISTAS ----------------------------")
