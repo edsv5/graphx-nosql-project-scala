@@ -14,13 +14,7 @@ var bufferedSource = scala.io.Source.fromFile("Carreteras_de_Costa_Rica_noExtraC
 
 // Creación del array inicial de nodos
 
-var vertices = Array(
-				(0L, (
-                        ("NOM_DISTRITO", ""),
-                        ("CABECERA_DE_CANTON", "")
-                    )
-                )
-			)
+var vertices = Array(0L,String)
 
 
 //Array inicial de aristas (NSRC, NDST, DISTANCIA)
@@ -58,23 +52,13 @@ for (line <- bufferedSource.getLines) {
     idA = idCounter // Guarda el id del src
 
     // Origen
-    var origen = (idCounter,    
-                    (
-                        ("NOM_DISTRITO", nsrc),
-                        ("CABECERA_DE_CANTON", "")
-                    )
-                )
+    var origen = Array(idCounter, nsrc)
 
     idCounter = idCounter + 1
     idB = idCounter
 
     // Destino
-    var destino = (idCounter,    
-                    (
-                        ("NOM_DISTRITO", ndst),
-                        ("CABECERA_DE_CANTON", "")
-                    )
-                )
+    var destino = Array(idCounter,ndst)
 
 
     // println(tupla)
@@ -87,7 +71,7 @@ for (line <- bufferedSource.getLines) {
     edges = edges :+ arista
 }
 
-var vRDD= sc.parallelize(vertices)
+var vRDD = sc.parallelize(vertices)
 var eRDD = sc.parallelize(edges)  
 
 // Creación del grafo con RDD de nodos y aristas
@@ -120,6 +104,21 @@ println("-------------------------- IMPRESIÓN DE ARISTAS ----------------------
 
 // graph.vertices.filter {case (id, tupla) => id == 3L }.collect.foreach(println)
 
+//graphGrouped.triplets.sortBy(_.attr, ascending=false).map(triplet =>
+  //  	"Distance " + triplet.attr.toString + // attr: Atributo de la arista, es decir, distancia
+	//	" from " + triplet.srcAttr + // srcAttr: atributo del nodo origen, en este caso, ID
+	//	" to " + triplet.dstAttr + "." // dstAttr: atributo del nodo destino, en este caso ID 
+	//).collect. 
+	//foreach(println) // Esto para imprimir
+
+
+//Vertice con mayor numero de aristas
+val tmp = graphGrouped.inDegrees
+tmp.take(20)
+//def max(a :(VertexId, Int), b :(VertexId, Int)) :(VertexId, Int) = if (a._2 > b._2) a else b
+//val maxIn = graphGrouped.inDegrees.reduce(max)
+//graphGrouped.vertices.filter{ case id => id = maxIn}.collect.foreach(println)
+graphGrouped.inDegrees.join(vRDD).sortBy(_._2._1).take(1)
+
+
 bufferedSource.close
-
-

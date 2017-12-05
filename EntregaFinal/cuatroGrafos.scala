@@ -110,6 +110,7 @@ graphFuerzaLaboral.collect.foreach(println)
 
 
 //**************************** RDD Demograficos **************************** //
+
 val archivoDemograficos = scala.io.Source.fromFile("Distritos_Sociales_y_Demograficos.csv")
 
 var verticesDemograficos = Array(
@@ -162,7 +163,6 @@ for (line <- archivoDemograficos.getLines) {
                         ("PRC_POB_CASADA", prcPobCasada),
                         ("PRC_POB_DISCAPACIDAD", prcPobDiscapacidad)
                     )
-                    
                 )
     
     // Se agrega al arreglo de nodos

@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Sat Nov 25 18:53:41 CST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-015f-f5d0-c3b4-00000ca9ecc8 
-on database directory /home/daniel/graphx-nosql-project-scala/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@cec590c 
-Loaded from file:/home/daniel/Downloads/spark-2.2.0-bin-hadoop2.7/jars/derby-10.12.1.1.jar
+Tue Dec 05 00:30:16 CST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.12.1.1 - (1704137): instance a816c00e-0160-255e-24c1-000007c1acc0 
+on database directory /Users/alexiaborchgrevink/Desktop/BasesII/EntregaFinalGraphX/graphx-nosql-project-scala/metastore_db with class loader org.apache.spark.sql.hive.client.IsolatedClientLoader$$anon$1@5c33008f 
+Loaded from file:/Users/alexiaborchgrevink/Desktop/BasesII/Scala-GraphX/graphx-nosql-project-scala/spark/jars/derby-10.12.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_151-b12
-user.dir=/home/daniel/graphx-nosql-project-scala
-os.name=Linux
-os.arch=amd64
-os.version=4.10.0-40-generic
+java.runtime.version=1.8.0_131-b11
+user.dir=/Users/alexiaborchgrevink/Desktop/BasesII/EntregaFinalGraphX/graphx-nosql-project-scala
+os.name=Mac OS X
+os.arch=x86_64
+os.version=10.12.6
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

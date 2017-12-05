@@ -18,55 +18,38 @@ val archivoDemografico = scala.io.Source.fromFile("Distritos_Sociales_y_Demograf
 var archivoCarreteras = scala.io.Source.fromFile("Carreteras_de_Costa_Rica_noExtraComas_noEmptyRegs_SrcDstAdded.csv")
 
 
-/*var verticesTotal = Array(
+var verticesTotal = Array(
 			(0L,
 			(
 		                ("PROVINCIA", ""),
 		                ("CANTON", ""),
 		                ("DISTRITO", ""),
+                        //Estadisticas de Fuerza laboral
 		                ("PobFuerzaTrabajoTotal", 0D),
-		                ("PobFuerzaTrabajoOcupada", 0D),
 		                ("DesempTotal", 0D),
 		                ("DesempConExperiencia", 0D),
-		                ("DesempSinExperiencia", 0D),
-		                ("PobFueraFuerzaTrabajoTotal", 0D),
-		                ("PobFueraFuerzaTrabajoPensionadoJubilado", 0D),
-		                ("PobFueraFuerzaTrabajoViveRenta", 0D),
 		                ("PobFueraFuerzaTrabajoEstudiante", 0D),
 		                ("PorcentajeOcupacion", 0D),
-		                ("PrcPobMen5EnGuarderia", 0D),
-		                ("PrcPobMay65EnCentroDiurno", 0D),
+                        //Estadisticas de Educacion
 		                ("PrcPobAnalfabeta", 0D),
 		                ("PrcAsistenciaEducReg", 0D),
-		                ("PrcPobQueAsisteACentroPublicoEducReg", 0D),
-		                ("PrcPobQueAsisteACentroPrivadoEducReg", 0D),
-		                ("PrcPobde5a15EnEducGenBasica", 0D)
-		                ("PrcPobEnEducAbierta", 0D),
 		                ("PrcPobConAlMenos1AnioDeSec", 0D),
-		                ("PrcPobDe17oMasConEducSuperior", 0D),
 		                ("PrcPobDe17oMasConTituloUniv", 0D),
-		                ("EscolaridadPromedioDePobDe15yMas", 0D)
-		                ("PrcPobDe7A17ConAlMenos1AnioDeRezago", 0D),
 		                //Estadisticas de Demografico
 		                ("PobTotal", 0D),
-		                ("DensidadPob", 0D),
-		                ("PrcPobUrbana", 0D),
 		                ("RelHombreMujer", 0D),
 		                ("PrcPobMayor65", 0D),
 		                ("PrcPobNacExtranj", 0D),
-		                ("TasaFecund", 0D),
-		                ("PrcPobCasada", 0D),
 		                ("PrcPobDiscapacidad", 0D),
 		                //Estadisticas de Hogares
 		                ("TotalViviendasIndividualesOcupadas", 0D),
 		                ("PromedioOcupantesVivienda", 0D),
 		                ("PorcentajePropias", 0D),
 		                ("PorcentajeAlquiladas", 0D),
-		                ("PorcentajeBuenEstado", 0D),
-		                ("PorcentajeHacinadas", 0D)
+		                ("PorcentajeBuenEstado", 0D)
 			)
 	                )
-			)*/
+			)
 
 var general = Array(
             (0L,(
@@ -82,61 +65,42 @@ var arrayFuerza = Array(
 			("PROVINCIA", ""),
 			("CANTON", ""),
 			("DISTRITO", ""),
-                        ("PobFuerzaTrabajoTotal", 0D),
-                        ("PobFuerzaTrabajoOcupada", 0D),
-                        ("DesempTotal", 0D),
-                        ("DesempConExperiencia", 0D),
-                        ("DesempSinExperiencia", 0D),
-                        ("PobFueraFuerzaTrabajoTotal", 0D),
-                        ("PobFueraFuerzaTrabajoPensionadoJubilado", 0D),
-                        ("PobFueraFuerzaTrabajoViveRenta", 0D),
-                        ("PobFueraFuerzaTrabajoEstudiante", 0D),
-                        ("PorcentajeOcupacion", 0D) // Atributo extra para guardar el porcentaje de ocupacion
+		                ("PobFuerzaTrabajoTotal", 0D),
+		                ("DesempTotal", 0D),
+		                ("DesempConExperiencia", 0D),
+		                ("PobFueraFuerzaTrabajoEstudiante", 0D),
+		                ("PorcentajeOcupacion", 0D) // Atributo extra para guardar el porcentaje de ocupacion
                         )
                 )
             )
 var arrayEducacion = Array(
 				(0L, (
-                        ("PrcPobMen5EnGuarderia", 0D),
-                        ("PrcPobMay65EnCentroDiurno", 0D),
-                        ("PrcPobAnalfabeta", 0D),
-                        ("PrcAsistenciaEducReg", 0D),
-                        ("PrcPobQueAsisteACentroPublicoEducReg", 0D),
-                        ("PrcPobQueAsisteACentroPrivadoEducReg", 0D),
-                        ("PrcPobde5a15EnEducGenBasica", 0D),
-                        ("PrcPobEnEducAbierta", 0D),
-                        ("PrcPobConAlMenos1AnioDeSec", 0D),
-                        ("PrcPobDe17oMasConEducSuperior", 0D),
-                        ("PrcPobDe17oMasConTituloUniv", 0D),
-                        ("EscolaridadPromedioDePobDe15yMas", 0D),
-                        ("PrcPobDe7A17ConAlMenos1AnioDeRezago", 0D)
+		                ("PrcPobAnalfabeta", 0D),
+		                ("PrcAsistenciaEducReg", 0D),
+		                ("PrcPobConAlMenos1AnioDeSec", 0D),
+		                ("PrcPobDe17oMasConTituloUniv", 0D)
                     )
                 )
             )
 
 var arrayDemografico = Array(
 				(0L, (
-                        ("PobTotal", 0D),
-                        ("DensidadPob", 0D),
-                        ("PrcPobUrbana", 0D),
-                        ("RelHombreMujer", 0D),
-                        ("PrcPobMayor65", 0D),
-                        ("PrcPobNacExtranj", 0D),
-                        ("TasaFecund", 0D),
-                        ("PrcPobCasada", 0D),
-                        ("PrcPobDiscapacidad", 0D)
+		                ("PobTotal", 0D),
+		                ("RelHombreMujer", 0D),
+		                ("PrcPobMayor65", 0D),
+		                ("PrcPobNacExtranj", 0D),
+		                ("PrcPobDiscapacidad", 0D)
                     )
                 )
             )
 
 var arrayHogares = Array(
 				(0L, (
-                        ("TotalViviendasIndividualesOcupadas", 0D),
-                        ("PromedioOcupantesVivienda", 0D),
-                        ("PorcentajePropias", 0D),
-                        ("PorcentajeAlquiladas", 0D),
-                        ("PorcentajeBuenEstado", 0D),
-                        ("PorcentajeHacinadas", 0D)
+		                ("TotalViviendasIndividualesOcupadas", 0D),
+		                ("PromedioOcupantesVivienda", 0D),
+		                ("PorcentajePropias", 0D),
+		                ("PorcentajeAlquiladas", 0D),
+		                ("PorcentajeBuenEstado", 0D)
                     )
                 )
             )
@@ -161,7 +125,6 @@ for (line <- archivoFuerzaLaboral.getLines) {
     var pobFueraFuerzaTrabajoViveRenta = s"${cols(16)}".toDouble
     var pobFueraFuerzaTrabajoEstudiante = s"${cols(17)}".toDouble
     var porcentajeOcupacion = pobFuerzaTrabajoOcupada / pobFuerzaTrabajoTotal
-
     // Se crea la tupla
     var tupla = (id,    
                     (
@@ -169,13 +132,8 @@ for (line <- archivoFuerzaLaboral.getLines) {
                         ("CANTON", canton),
                         ("DISTRITO", distrito),
                         ("POB_FUERZA_TRABAJO_TOTAL", pobFuerzaTrabajoTotal),
-                        ("POB_FUERZA_TRABAJO_OCUPADA", pobFuerzaTrabajoOcupada),
                         ("DESEMP_TOTAL", desempTotal),
                         ("DESEMP_CON_EXPERIENCIA", desempConExperiencia),
-                        ("DESEMP_SIN_EXPERIENCIA", desempSinExperiencia),
-                        ("POB_FUERA_FUERZA_TRABAJO_TOTAL", pobFueraFuerzaTrabajoTotal),
-                        ("POB_FUERA_FUERZA_TRABAJO_PENSIONADO_JUBILADO", pobFueraFuerzaTrabajoPensionadoJubilado),
-                        ("POB_FUERA_FUERZA_TRABAJO_VIVE_RENTA", pobFueraFuerzaTrabajoViveRenta),
                         ("POB_FUERA_FUERZA_TRABAJO_ESTUDIANTE", pobFueraFuerzaTrabajoEstudiante),
                         ("PORCENTAJE_OCUPACION", porcentajeOcupacion)
         ))
@@ -207,53 +165,166 @@ for (line <- archivoEducacion.getLines) {
     var prcPobDe17oMasConTituloUniv = s"${cols(25)}".toDouble
     var escolaridadPromedioDePobDe15yMas = s"${cols(26)}".toDouble
     var prcPobDe7A17ConAlMenos1AnioDeRezago = s"${cols(29)}".toDouble
-
     // Se crea la tupla
     var tupla = (id,    
                     (
-                        ("PRC_POB_MENOR_5_EN_GUARDERIA", prcPobMen5EnGuarderia),
-                        ("PRC_MAYOR_65_EN_CENTRO_DIURNO", prcPobMay65EnCentroDiurno),
                         ("PRC_POB_ANALFABETA", prcPobAnalfabeta),
                         ("PRC_ASISTENCIA_A_EDUCACION_REGULAR", prcAsistenciaEducReg),
-                        ("PRC_POB_QUE_ASISTE_A_CENTRO_PUBLICO_EDUCACION", prcPobQueAsisteACentroPublicoEducReg),
-                        ("PRC_POB_QUE_ASISTE_A_CENTRO_PRIVADO_EDUCACION", prcPobQueAsisteACentroPrivadoEducReg),
-                        ("PRC_POB_DE_5_A_15_QUE_ASISTE_A_ED_GEN_BASICA", prcPobde5a15EnEducGenBasica),
-                        ("PRC_POB_EN_EDUCACION_ABIERTA", prcPobEnEducAbierta),
                         ("PRC_POB_CON_AL_MENOS_UN_ANIO_DE_SECUNDARIA", prcPobConAlMenos1AnioDeSec),
-                        ("PRC_POB_DE_17_O_MAS_CON_EDUC_SUPERIOR", prcPobDe17oMasConEducSuperior),
-                        ("PRC_POB_DE_17_O_MAS_CON_TITULO_UNIV", prcPobDe17oMasConTituloUniv),
-                        ("ESCOLARIDAD_PROMEDIO_15_ANIOS_O_MAS", escolaridadPromedioDePobDe15yMas),
-                        ("PRC_POB_DE_7_A_17_CON_AL_MENOS_1_ANIO_REZAGO", prcPobDe7A17ConAlMenos1AnioDeRezago)
+                        ("PRC_POB_DE_17_O_MAS_CON_TITULO_UNIV", prcPobDe17oMasConTituloUniv)
                     )
                 )
 
     // Se agrega al arreglo de nodos
     arrayEducacion = arrayEducacion :+ tupla
-    //val findTuple = verticesTotal.filter(x => x._1 == id)
-    //println(s"elemento en array educacion= ${arrayEducacion(${id})}")
-    //println(s"elemento en array vertices total= ${verticesTotal(${id})}")
+}
+
+//*************** Lee archivo de Estadisticas de HOGARES *******************//
+
+for (line <- archivoHogares.getLines) {
+    var cols = line.split(",").map(_.trim)
+
+    var id = s"${cols(3)}".toLong
+    var idStat = s"${cols(1)}".toLong
+    var provincia = s"${cols(4)}"
+    var canton = s"${cols(5)}"
+    var distrito = s"${cols(6)}"
+    var totalViviendasIndivOcupadas = s"${cols(7)}".toDouble
+    var promOcupantesVivienda = s"${cols(8)}".toDouble
+    var prcPropias = s"${cols(9)}".toDouble
+    var prcAlquiladas = s"${cols(10)}".toDouble
+    var prcBuenEstado = s"${cols(11)}".toDouble
+    var prcHacinadas = s"${cols(12)}".toDouble
+    // Se crea la tupla
+    var tupla = (id,    
+                    (
+                        ("TOTAL_VIVIENDAS_INDIV_OCUPADAS", totalViviendasIndivOcupadas),
+                        ("PROM_OCUPANTES_VIVIENDA", promOcupantesVivienda),
+                        ("PRC_PROPIAS", prcPropias),
+                        ("PRC_ALQUILADAS", prcAlquiladas),
+                        ("PRC_BUEN_ESTADO", prcBuenEstado)
+                    ) 
+                )
+    
+    // Se agrega al arreglo de nodos
+    arrayHogares = arrayHogares :+ tupla
+}
+
+//*************** Lee archivo de Estadisticas de DEMOGRAFICOS *******************//
+
+for (line <- archivoDemografico.getLines) {
+    var cols = line.split(",").map(_.trim)
+
+    var id = s"${cols(3)}".toLong
+    var provincia = s"${cols(4)}"
+    var canton = s"${cols(5)}"
+    var distrito = s"${cols(6)}"
+    var pobTotal = s"${cols(7)}".toDouble
+    var densidadPob = s"${cols(8)}".toDouble
+    var prcPobUrb = s"${cols(9)}".toDouble
+    var relHomMuj = s"${cols(10)}".toDouble
+    var prcPobMayor65 = s"${cols(12)}".toDouble
+    var prcPobNacExtranj = s"${cols(13)}".toDouble
+    var tasaFecund = s"${cols(14)}".toDouble
+    var prcPobCasada = s"${cols(15)}".toDouble
+    var prcPobDiscapacidad = s"${cols(16)}".toDouble
+
+    // Se crea la tupla
+    var tupla = (id,    
+                    (
+                        ("POB_TOTAL", pobTotal),
+                        ("REL_HOMBRE_MUJER", relHomMuj),
+                        ("PRC_POB_MAYPR_65", prcPobMayor65),
+                        ("PRC_POB_EXTRANJERA", prcPobNacExtranj),
+                        ("PRC_POB_DISCAPACIDAD", prcPobDiscapacidad)
+                    )
+                    
+                )
+    
+    // Se agrega al arreglo de nodos
+    arrayDemografico = arrayDemografico :+ tupla
 }
 
 //Creacion de RDD
-val fuerzaRDD : RDD[(Long, ((String,String),(String,String),(String,String),(String,Double), (String,Double), (String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double)))] = sc.parallelize(arrayFuerza)
+val fuerzaRDD : RDD[(Long, ((String,String),(String,String),(String,String),(String,Double), (String,Double), (String,Double),(String,Double),(String,Double)))] = sc.parallelize(arrayFuerza)
 
-val educacionRDD : RDD[(Long, ((String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double),(String,Double)))] = sc.parallelize(arrayEducacion)
+val educacionRDD : RDD[(Long, ((String,Double),(String,Double),(String,Double),(String,Double)))] = sc.parallelize(arrayEducacion)
 
-var newVert = sc.parallelize(fuerzaRDD.join(educacionRDD).map{distrito => (
+//rddFuerzaEdu.foreach(println)
+
+var rddFuerzaEdu = sc.parallelize(fuerzaRDD.join(educacionRDD).map{distrito => (
 		distrito._1,
 		(
 		 distrito._2._1._1,
 		 distrito._2._1._2,
 		 distrito._2._1._3,
+         distrito._2._1._4,
+         distrito._2._1._5,
+         distrito._2._1._6, 
+         distrito._2._1._7, 
+         distrito._2._1._8, 
 		 distrito._2._2._1,
 		 distrito._2._2._2,
 		 distrito._2._2._3,
 		 distrito._2._2._4)
 		)}.collect)
 
-newVert.foreach(println)
+//rddFuerzaEdu.foreach(println)
 
+val hogaresRDD : RDD[(Long, ((String,Double),(String,Double),(String,Double),(String,Double),(String,Double)))] = sc.parallelize(arrayHogares)
 
+var rddFuerzaEduHogares = sc.parallelize(rddFuerzaEdu.join(hogaresRDD).map{distrito => (
+		distrito._1,
+		(
+		 distrito._2._1._1,
+		 distrito._2._1._2,
+		 distrito._2._1._3,
+         distrito._2._1._4,
+         distrito._2._1._5,
+         distrito._2._1._6, 
+         distrito._2._1._7, 
+         distrito._2._1._8, 
+         distrito._2._1._9,
+         distrito._2._1._10,
+         distrito._2._1._11, 
+         distrito._2._1._12,     
+		 distrito._2._2._1,
+		 distrito._2._2._2,
+		 distrito._2._2._3,
+		 distrito._2._2._4,
+         distrito._2._2._5)
+		)}.collect)
 
+//rddFuerzaEduHogares.foreach(println)
 
+val demograficosRDD : RDD[(Long, ((String,Double),(String,Double),(String,Double),(String,Double),(String,Double)))] = sc.parallelize(arrayDemografico)
+
+var rddFuerzaEduHogaresDemo = sc.parallelize(rddFuerzaEduHogares.join(demograficosRDD).map{distrito => (
+		distrito._1,
+		(
+		 distrito._2._1._1,
+		 distrito._2._1._2,
+		 distrito._2._1._3,
+         distrito._2._1._4,
+         distrito._2._1._5,
+         distrito._2._1._6, 
+         distrito._2._1._7, 
+         distrito._2._1._8, 
+         distrito._2._1._9,
+         distrito._2._1._10,
+         distrito._2._1._11, 
+         distrito._2._1._12,
+         distrito._2._1._13, 
+         distrito._2._1._14,
+         distrito._2._1._15,
+         distrito._2._1._16,
+         distrito._2._1._17,   
+		 distrito._2._2._1,
+		 distrito._2._2._2,
+		 distrito._2._2._3,
+		 distrito._2._2._4,
+         distrito._2._2._5)
+		)}.collect)
+
+rddFuerzaEduHogaresDemo.foreach(println)
 
