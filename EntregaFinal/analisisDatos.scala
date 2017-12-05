@@ -383,9 +383,43 @@ archivoDemografico.close
 archivoCarreteras.close
 
 graph.degrees.collect.foreach(println)
+
+println("-------------------------- IMPRESIÓN DE DATOS PARA MAS AISLADOS ----------------------------")
 var nodosMenores = graph.degrees.sortBy(e=>e._2).take(5)
-nodosMenores.foreach(println)
+//nodosMenores.foreach(println)
+for ((id,deg) <- nodosMenores) {
+   graph.vertices.filter(vertex =>vertex._1.equals(id)).map(v =>
+	"Id: " + v._1 +
+	" Distrito: " + v._2._1 + v._2._2 + v._2._3 +
+	" Desempleo Total: " + v._2._5 +
+	" Porcentaje de Ocupacion: " + v._2._8 +
+	" Porcentaje de Poblacion Analfabeta: " + v._2._9 +
+	" Porcentaje de Asistencia a Educacion Regular: " + v._2._10 +
+	" Porcentaje de Poblacion mayor a 17 con Titulo Universitario: " + v._2._12 +
+	" Poblacion Total: " + v._2._18 +
+	" Promedio de Ocupantes por Vivienda: " + v._2._14 +
+	" Porcentaje de Casas Propias: " + v._2._15 +
+	" Porcentaje de Casas Alquiladas: " + v._2._16 + "\n"
+   ).collect.foreach(println)
+}
 
-var nodosMayores = graph.degrees.sortBy(_._2,false).take(5)
-nodosMayores.foreach(println)
 
+
+println("-------------------------- IMPRESIÓN DE DATOS PARA MAS INTERCONECTADOS ----------------------------")
+var nodosMayores = graph.degrees.sortBy(_._2,false).filter(v => v._1 > 0).take(5)
+//nodosMayores.foreach(println)
+for ((id,deg) <- nodosMayores) {
+   graph.vertices.filter(vertex =>vertex._1.equals(id)).map(v =>
+	"Id: " + v._1 +
+	" Distrito: " + v._2._1 + v._2._2 + v._2._3 +
+	" Desempleo Total: " + v._2._5 +
+	" Porcentaje de Ocupacion: " + v._2._8 +
+	" Porcentaje de Poblacion Analfabeta: " + v._2._9 +
+	" Porcentaje de Asistencia a Educacion Regular: " + v._2._10 +
+	" Porcentaje de Poblacion mayor a 17 con Titulo Universitario: " + v._2._12 +
+	" Poblacion Total: " + v._2._18 +
+	" Promedio de Ocupantes por Vivienda: " + v._2._14 +
+	" Porcentaje de Casas Propias: " + v._2._15 +
+	" Porcentaje de Casas Alquiladas: " + v._2._16 + "\n"
+   ).collect.foreach(println)
+}
